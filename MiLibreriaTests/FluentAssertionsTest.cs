@@ -54,5 +54,27 @@ namespace MiLibreriaTests
             var array = new int[] { 10, 5 };
             array.Should().HaveCount(3, "because I wanted this to fail");
         }
+
+        [TestMethod]
+        public void Division1Over0_ShouldThrowException()
+        {
+            Action action = () =>
+            {
+                var i = 1;
+                var t = 1 / (i - 1);
+            };
+
+            action.ShouldThrow<FormatException>("other reason");
+        }
+
+        [TestMethod]
+        public void Dictionary_ShouldContain()
+        {
+            var computerScientists = new Dictionary<string, string>();
+
+            computerScientists.Should()
+                .ContainValue("Grace Hopper", "she's awesome")
+                .Which.Length.Should().Be(12);
+        }
     }
 }
